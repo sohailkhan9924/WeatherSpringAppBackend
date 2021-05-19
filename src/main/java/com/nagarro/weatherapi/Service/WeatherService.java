@@ -18,14 +18,14 @@ public class WeatherService {
 		RestTemplate restTemplate = new RestTemplate();
 
 		// Storing data in LinkedHashMap (data)
-		LinkedHashMap<String, ?> data = (LinkedHashMap<String, ?>) restTemplate
+		LinkedHashMap<String, Object> data = (LinkedHashMap<String,Object>) restTemplate
 				.getForObject(Values.url + "?q=" + cityInp + "&appid=" + Values.appId, Object.class);
 
 		// Getting the data that is required for the functionality
 
 		// coordinates
 		LinkedHashMap<String, ?> coord = (LinkedHashMap<String, ?>) data.get("coord");
-		float longitude = (float) coord.get("lon");
+		double longitude = (double) coord.get("lon");
 		double latitude = (double) coord.get("lat");
 
 		// weather description

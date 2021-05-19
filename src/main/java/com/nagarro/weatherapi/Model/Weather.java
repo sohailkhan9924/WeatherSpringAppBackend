@@ -2,7 +2,7 @@ package com.nagarro.weatherapi.Model;
 
 public class Weather {
 
-	private float longitude;
+	private double longitude;
 	private double latitude;
 	private String description;
 	private String city;
@@ -11,18 +11,18 @@ public class Weather {
 
 	}
 
-	public Weather(float longitude, double latitude, String description, String city) {
+	public Weather(double longitude, double latitude, String description, String city) {
 		this.longitude = longitude;
 		this.latitude = latitude;
 		this.description = description;
 		this.city = city;
 	}
 
-	public float getLongitude() {
+	public double getLongitude() {
 		return longitude;
 	}
 
-	public void setLongitude(float longitude) {
+	public void setLongitude(double longitude) {
 		this.longitude = longitude;
 	}
 
