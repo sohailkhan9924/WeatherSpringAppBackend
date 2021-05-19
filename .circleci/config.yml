@@ -1,22 +1,18 @@
-
 version: 2 # use CircleCI 2.0
-jobs: 
-  build: 
-
+jobs:
+  build:
     working_directory: ~/circleci-demo-java-spring # directory where steps will run
 
-    docker: 
-      - image: circleci/openjdk:11-stretch 
+    docker:
+      - image: circleci/openjdk:11-stretch
 
-    steps: 
-
+    steps:
       - checkout:
 
-      - restore_cache: 
-          
+      - restore_cache:
           key: circleci-demo-java-spring-{{ checksum "pom.xml" }}
 
-      - run: mvn dependency:go-offline 
+      - run: mvn dependency:go-offline
 
       - save_cache: # saves the project dependencies
           paths:
@@ -25,8 +21,5 @@ jobs:
 
       - run: mvn package # run the actual tests
 
-      
-      - store_artifacts: 
-          
+      - store_artifacts:
           path: target/demo-java-spring-0.0.1-SNAPSHOT.jar
-      
