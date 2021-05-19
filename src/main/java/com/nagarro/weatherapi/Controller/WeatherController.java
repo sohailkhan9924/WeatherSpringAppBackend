@@ -29,9 +29,10 @@ public class WeatherController {
 	@RequestMapping(value = "/weather", method = RequestMethod.POST)
 	public ResponseEntity<Weather> getWeatherData(@RequestBody LinkedHashMap<String, ?> data) {
 		String city = (String) data.get("city");
+		WeatherService.sendWeatherData(city);
 		
 
-		Weather weatherApp=WeatherService.getWeatherData(city);
+		Weather weatherApp=WeatherService.sendWeatherData(city);
 		System.out.println(weatherApp.getDescription());
 		return ResponseEntity.status(HttpStatus.OK).body(weatherApp);
 	}

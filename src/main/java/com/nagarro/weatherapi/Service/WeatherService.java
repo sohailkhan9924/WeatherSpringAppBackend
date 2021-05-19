@@ -15,6 +15,7 @@ import com.nagarro.weatherapi.Values.Values;
 
 @Service
 public class WeatherService {
+	String[] cityData ={"Amritsar","gurgaon"};
 	@Autowired
 	private JavaMailSender javaMailSender;
 
@@ -42,9 +43,9 @@ public class WeatherService {
 		// Your City
 		String city = (String) data.get("name");
 
-		// Temperature
-//		LinkedHashMap<String, ?> main = (LinkedHashMap<String, ?>) data.get("main");
-//		double temp = (double) main.get("temp") - 273.15;
+//		 Temperature
+		LinkedHashMap<String, ?> main = (LinkedHashMap<String, ?>) data.get("main");
+		double temp = (double) main.get("temp") - 273.15;
 
 //		Save Data in dataBase
 		Weather weatherApp = new Weather(longitude, latitude, description, city);
@@ -53,12 +54,22 @@ public class WeatherService {
 
 	}
 
-	@Scheduled(cron = "0 0 10 * * ?")
+	public Weather sendWeatherData(String cityInp) {
+		Weather weatherData = getWeatherData(cityInp);
+
+		return weatherData;
+
+	}
+
+	@Scheduled(cron = "0 18 17 * * ?")
 	// @Scheduled(cron = "[Seconds] [Minutes] [Hours] [Day of month] [Month] [Day of
 	// week] [Year]")
 	// Send Periodic Mails
 	public void sendPeriodicEmail() {
-		sendEmail("sohail.khan@nagarro.com", Values.date, "Amritsar", null);
+		Weather weatherData = getWeatherData(Values.cityData[0]);
+		Weather weatherData1 = getWeatherData(Values.cityData[1]);
+		sendEmail(Values.emailData[0], Values.date, Values.cityData[0], weatherData.getDescription());
+		sendEmail(Values.emailData[1], Values.date, Values.cityData[1], weatherData1.getDescription());
 	}
 
 //	Mail Service
