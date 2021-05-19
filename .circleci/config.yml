@@ -1,32 +1,31 @@
 
-version: 2 # use CircleCI 2.0
-jobs: 
-  build: 
+version: 2
 
-    working_directory: ~/circleci-demo-java-spring # directory where steps will run
+ jobs:
+   build:
+     ...
+   deploy:
+     docker:
+       - image: circleci/openjdk:11-stretch 
+         auth:
+           username: sohailkhan2709@gmail.com
+           password: zcbm12342@A  # context / project UI env-var reference
+     steps:
+       - checkout
+       - run:
+           name: Deploy Master to Heroku
+           command: |
+             git push https://heroku:$HEROKU_API_KEY@git.heroku.com/weather-api-app-web.git master
 
-    docker: 
-      - image: circleci/openjdk:11-stretch 
-
-    steps: 
-
-      - checkout:
-
-      - restore_cache: 
-          
-          key: circleci-demo-java-spring-{{ checksum "pom.xml" }}
-
-      - run: mvn dependency:go-offline 
-
-      - save_cache: # saves the project dependencies
-          paths:
-            - ~/.m2
-          key: circleci-demo-java-spring-{{ checksum "pom.xml" }}
-
-      
-
-      
-      - store_artifacts: 
-          
-          path: target/demo-java-spring-0.0.1-SNAPSHOT.jar
+ workflows:
+   version: 2
+   build-deploy:
+     jobs:
+       - build
+       - deploy:
+           requires:
+             - build # only run deploy-via-git job if the build job has completed
+           filters:
+             branches:
+               only: master # only run deploy-via-git job on master branch
       
