@@ -1,10 +1,10 @@
-package com.nagarro.IndexRate;
+package com.nagarro.weatherapi;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class IndexRateApplicationTests {
+class WeatherapiApplicationTests {
 
 	@Test
 	void contextLoads() {
