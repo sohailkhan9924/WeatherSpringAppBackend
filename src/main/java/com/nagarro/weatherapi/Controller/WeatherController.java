@@ -14,28 +14,18 @@ import org.springframework.web.bind.annotation.RestController;
 import com.nagarro.weatherapi.Model.Weather;
 import com.nagarro.weatherapi.Service.WeatherService;
 
-
-
-
-
 @RestController
 @CrossOrigin(origins = "*")
 public class WeatherController {
 
 	@Autowired
 	private WeatherService WeatherService;
-	
 
 	@RequestMapping(value = "/weather", method = RequestMethod.POST)
 	public ResponseEntity<Weather> getWeatherData(@RequestBody LinkedHashMap<String, ?> data) {
 		String city = (String) data.get("city");
-		WeatherService.sendWeatherData(city);
-		
-
-		Weather weatherApp=WeatherService.sendWeatherData(city);
-		System.out.println(weatherApp.getDescription());
+		Weather weatherApp = WeatherService.getWeatherData(city);
 		return ResponseEntity.status(HttpStatus.OK).body(weatherApp);
 	}
-
 
 }
