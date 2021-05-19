@@ -37,7 +37,7 @@ public class WeatherService {
 		String city = (String) data.get("name");
 
 //		 Temperature
-		LinkedHashMap<String, ?> main = (LinkedHashMap<String, ?>) data.get("main");
+		LinkedHashMap<String, Object> main = (LinkedHashMap<String, Object>) data.get("main");
 		double temp = (double) main.get("temp") - 273.15;
 
 //		Save Data in dataBase
