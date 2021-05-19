@@ -8,8 +8,7 @@ workflows:
 
 jobs:
   build-deploy:
-    machine: true
-    docker: 
+    machine: true 
       - image: circleci/openjdk:11-stretch 
     steps:
       - checkout
