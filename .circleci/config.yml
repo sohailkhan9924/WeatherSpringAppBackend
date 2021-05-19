@@ -1,7 +1,11 @@
+version: 2.1
 
-version: 2 # use CircleCI 2.0
+workflows:
+  build-deploy:
+    jobs:
+      - build-deploy
 jobs: 
-  build: 
+  build-deploy: 
 
     working_directory: ~/circleci-demo-java-spring # directory where steps will run
 
@@ -26,14 +30,4 @@ jobs:
             HEROKU_API_KEY=${HEROKU_API_KEY} heroku container:release -a weather-api-app-web web
 
 
-      - save_cache: # saves the project dependencies
-          paths:
-            - ~/.m2
-          key: circleci-demo-java-spring-{{ checksum "pom.xml" }}
-
-      - run: mvn package # run the actual tests
-
       
-      - store_artifacts: 
-          
-          path: target/demo-java-spring-0.0.1-SNAPSHOT.jar
