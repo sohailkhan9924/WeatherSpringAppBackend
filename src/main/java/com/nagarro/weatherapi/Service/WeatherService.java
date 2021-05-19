@@ -25,7 +25,7 @@ public class WeatherService {
 
 		// coordinates
 		LinkedHashMap<String, ?> coord = (LinkedHashMap<String, ?>) data.get("coord");
-		double longitude = (double) coord.get("lon");
+		float longitude = (float) coord.get("lon");
 		double latitude = (double) coord.get("lat");
 
 		// weather description
