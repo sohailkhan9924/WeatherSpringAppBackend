@@ -12,7 +12,7 @@
 	<groupId>com.nagarro</groupId>
 	<artifactId>weatherapi</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	
+	<packaging>war</packaging>
 	<name>weatherapi</name>
 	<description>a simple weather api</description>
 	<properties>
@@ -73,6 +73,11 @@
 
 	<build>
 		<plugins>
+			<plugin>
+				<groupId>com.heroku.sdk</groupId>
+				<artifactId>heroku-maven-plugin</artifactId>
+				<version>3.0.3</version>
+			</plugin>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
