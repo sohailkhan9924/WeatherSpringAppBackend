@@ -12,7 +12,7 @@
 	<groupId>com.nagarro</groupId>
 	<artifactId>weatherapi</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+	
 	<name>weatherapi</name>
 	<description>a simple weather api</description>
 	<properties>
